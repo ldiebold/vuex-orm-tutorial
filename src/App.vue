@@ -1,10 +1,18 @@
 <template>
   <div id="app">
-    <div v-for="profile in profiles" :key="profile.id">
-      <h1 style="color: orange">{{ profile.user.name }}</h1>
-      <p>{{ profile.bio }}</p>
+    <h1>{{ user.name }}</h1>
+
+    <div v-for="list in user.lists" :key="list.id">
+      {{ list.title }}
+      <ul>
+        <li v-for="item in list.items" :key="item.id">
+          {{ item.body }}
+        </li>
+      </ul>
     </div>
 
+
+    <!-- Item Input -->
     <input v-model="form.body" />
 
     <button @click="addItem">Add Item</button>
@@ -18,6 +26,7 @@
 </template>
 
 <script>
+import List from './classes/List'
 import Item from './classes/Item'
 import User from './classes/User'
 import Profile from './classes/Profile'
@@ -35,37 +44,51 @@ export default {
 
   beforeMount() {
     User.insert({
-      data: [
-        {
-          id: 28,
-          name: 'luke',
-          email: 'luke@ldiebold.com',
-          profile: {
-            id: 55,
-            bio: 'Luke is a web developer!',
-            life_goal: 'have my own team of developers that create products that help change the world for the better',
-          }
-        },
+      data: {
+        id: 28,
+        name: 'luke',
+        email: 'luke@ldiebold.com',
+        lists: [
+          {
+            id: 34,
+            title: 'shopping list',
+            body: 'My shopping list',
+            user_id: 28,
+            items: [
+              {
+                id: 57,
+                body: 'banana',
+                list_id: 34,
+              },
+              {
+                id: 62,
+                body: 'cucumber',
+                list_id: 34,
+              },
+              {
+                id: 102,
+                body: 'zucchini',
+                list_id: 34,
+              },
+            ]
+          },
 
-        {
-          id: 27,
-          name: 'Shannen',
-          email: 'shannen@example.com',
-          profile: {
-            id: 65,
-            bio: 'Shannen is awesome',
-            life_goal: 'Join the UN and help change the world!!!',
+          {
+            id: 35,
+            title: 'life goals',
+            body: 'things I want to do with my life!',
+            user_id: 28,
           }
-        },
-      ]
+        ]
+      },
     })
   },
 
   computed: {
-    profiles() {
-      return Profile.query()
-        .with('user')
-        .get()
+    user() {
+      return User.query()
+        .with('lists.items')
+        .find(28)
     },
 
     items() {
@@ -76,7 +99,7 @@ export default {
   methods: {
     addItem() {
       Item.save()
-    }
+    },
   }
 }
 </script>
@@ -86,20 +109,13 @@ export default {
 //   email
 //   name
 
-// Profile
-//   id
-//   bio
-//   life_goal
-//   user_id - 22
+// List
+//  id - 44
+//  title - shopping
+//  user_id - 22
 
-// User
-{
-  id: 22,
-  name: 'luke',
-  email: 'luke@ldiebold.com',
-  profile: {
-    bio: '',
-    life_goal: '',
-    user_id: 22
-  }
-}
+// List
+//  id - 55
+//  title - life goals
+//  user_id - 22
+
