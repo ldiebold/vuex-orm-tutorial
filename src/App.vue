@@ -10,18 +10,6 @@
         </li>
       </ul>
     </div>
-
-
-    <!-- Item Input -->
-    <input v-model="form.body" />
-
-    <button @click="addItem">Add Item</button>
-
-    <li
-      v-for="item in items"
-      :key="item.$id"
-      v-text="item.body"
-    />
   </div>
 </template>
 
@@ -48,39 +36,25 @@ export default {
         id: 28,
         name: 'luke',
         email: 'luke@ldiebold.com',
-        lists: [
-          {
-            id: 34,
-            title: 'shopping list',
-            body: 'My shopping list',
-            user_id: 28,
-            items: [
-              {
-                id: 57,
-                body: 'banana',
-                list_id: 34,
-              },
-              {
-                id: 62,
-                body: 'cucumber',
-                list_id: 34,
-              },
-              {
-                id: 102,
-                body: 'zucchini',
-                list_id: 34,
-              },
-            ]
-          },
-
-          {
-            id: 35,
-            title: 'life goals',
-            body: 'things I want to do with my life!',
-            user_id: 28,
-          }
-        ]
+        list_ids: [62, 56, 92]
       },
+    })
+
+    List.insert({
+      data: [
+        {
+          id: 62,
+          title: 'shopping',
+        },
+        {
+          id: 56,
+          title: 'favourite things'
+        },
+        {
+          id: 92,
+          title: 'todo'
+        }
+      ]
     })
   },
 
