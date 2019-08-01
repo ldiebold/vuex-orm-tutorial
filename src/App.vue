@@ -1,15 +1,27 @@
 <template>
   <div id="app">
-    <h1>{{ user.name }}</h1>
+    <div style="float: left">
+      <h1>{{ user.name }}</h1>
 
-    <input v-model="form.title" />
-    <button @click="addList">Add List</button>
-    
-    <List
-      v-for="list in user.lists"
-      :key="list.id"
-      :list="list"
-    />
+      <input v-model="form.title" />
+      <button @click="addList">Add List</button>
+      
+      <List
+        v-for="list in user.lists"
+        :key="list.id"
+        :list="list"
+      />
+    </div>
+
+    <div style="float: right">
+      <ul>
+        <li
+          v-for="item in user.items"
+          v-text="item.body"
+          :key="item.id"
+        />
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -40,7 +52,29 @@ export default {
         id: 28,
         name: 'luke',
         email: 'luke@ldiebold.com',
-        list_ids: [62, 56, 92]
+        lists: [
+          {
+            id: 22,
+            title: 'shopping',
+            items: [
+              {
+                id: 62,
+                body: 'banana'
+              }
+            ]
+          },
+
+          {
+            id: 19,
+            title: 'todo',
+            items: [
+              {
+                id: 56,
+                body: 'computer'
+              }
+            ]
+          }
+        ]
       },
     })
   },
@@ -49,6 +83,7 @@ export default {
     user() {
       return User.query()
         .with('lists.items')
+        .with('items')
         .find(28)
     },
   },
