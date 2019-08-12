@@ -7,6 +7,8 @@ import Profile from './classes/Profile'
 import List from './classes/List'
 import Role from './classes/Role'
 import RoleUser from './classes/RoleUser'
+import Image from './classes/Image'
+import Post from './classes/Post'
 
 Vue.use(Vuex)
 
@@ -18,6 +20,8 @@ database.register(Profile)
 database.register(List)
 database.register(Role)
 database.register(RoleUser)
+database.register(Image)
+database.register(Post)
 
 export default new Vuex.Store({
   plugins: [VuexORM.install(database)]
