@@ -64,7 +64,7 @@ export default {
     images() {
       return Image.query()
         .with('imageable')
-        .get();
+        .get()
     }
   },
 
