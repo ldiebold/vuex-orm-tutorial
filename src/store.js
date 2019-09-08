@@ -11,6 +11,8 @@ import Image from './classes/Image'
 import Post from './classes/Post'
 import Video from './classes/Video'
 import Comment from './classes/Comment'
+import Tag from './classes/Tag'
+import Taggable from './classes/Taggable'
 
 Vue.use(Vuex)
 
@@ -26,6 +28,8 @@ database.register(Image)
 database.register(Post)
 database.register(Video)
 database.register(Comment)
+database.register(Tag)
+database.register(Taggable)
 
 export default new Vuex.Store({
   plugins: [VuexORM.install(database)]
