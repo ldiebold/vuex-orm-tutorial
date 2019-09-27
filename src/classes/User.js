@@ -16,10 +16,6 @@ export default class User extends Model {
 
   static mutators() {
     return {
-      last_name(value) {
-        return value.toUpperCase()
-      },
-
       date_born(value) {
         return moment(value)
       }
@@ -33,6 +29,7 @@ export default class User extends Model {
       last_name: this.attr(''),
       email: this.attr(''),
       date_born: this.attr(null),
+      age: this.attr(null),
       // relationships
       profile: this.hasOne(Profile, 'user_id'),
       lists: this.hasMany(List, 'user_id'),
