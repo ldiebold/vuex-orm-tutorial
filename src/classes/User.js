@@ -5,15 +5,34 @@ import Item from './Item'
 import Role from './Role'
 import RoleUser from './RoleUser'
 import Image from './Image'
+import moment from 'moment'
 
 export default class User extends Model {
   static entity = 'users'
 
+  get full_name() {
+    return `${this.first_name} ${this.last_name}`
+  }
+
+  static mutators() {
+    return {
+      last_name(value) {
+        return value.toUpperCase()
+      },
+
+      date_born(value) {
+        return moment(value)
+      }
+    }
+  }
+
   static fields() {
     return {
       id: this.increment(),
-      name: this.attr(''),
+      first_name: this.attr(''),
+      last_name: this.attr(''),
       email: this.attr(''),
+      date_born: this.attr(null),
       // relationships
       profile: this.hasOne(Profile, 'user_id'),
       lists: this.hasMany(List, 'user_id'),
