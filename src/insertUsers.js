@@ -69,6 +69,7 @@ export default () => {
       posts: [
         {
           id: 4,
+          published: true,
           title: 'Nutrition Stuff',
           tags: [
             {
@@ -80,7 +81,8 @@ export default () => {
             {
               user_id: 3,
               id: 4,
-              body: 'I love to eat healthy!'
+              body: 'I love to eat healthy!',
+              type: 'reviewed',
             }
           ]
         }
