@@ -6,6 +6,8 @@ import Role from './Role'
 import RoleUser from './RoleUser'
 import Image from './Image'
 import moment from 'moment'
+import Post from './Post'
+import Comment from './Comment'
 
 export default class User extends Model {
   static entity = 'users'
@@ -31,6 +33,8 @@ export default class User extends Model {
       date_born: this.attr(null),
       age: this.attr(null),
       // relationships
+      posts: this.hasMany(Post, 'user_id'),
+      comments: this.hasMany(Comment, 'user_id'),
       profile: this.hasOne(Profile, 'user_id'),
       lists: this.hasMany(List, 'user_id'),
       items: this.hasManyThrough(Item, List, 'user_id', 'list_id'),
