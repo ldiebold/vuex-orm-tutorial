@@ -8,12 +8,29 @@ import Image from './Image'
 import moment from 'moment'
 import Post from './Post'
 import Comment from './Comment'
+import { Admin, Publisher, SuperAdmin } from './UserHierarchy'
 
-export default class User extends Model {
+export class User extends Model {
   static entity = 'users'
 
   get full_name() {
     return `${this.first_name} ${this.last_name}`
+  }
+
+  static types() {
+    return {
+      ADMIN: Admin,
+      PUBLISHER: Publisher,
+      SUPER_ADMIN: SuperAdmin,
+    }
+  }
+
+  post() {
+    console.log('Making a post')
+  }
+
+  login() {
+    console.log('logging in')
   }
 
   static mutators() {
@@ -26,6 +43,7 @@ export default class User extends Model {
 
   static fields() {
     return {
+      type: this.attr('USER'),
       id: this.increment(),
       first_name: this.attr(''),
       last_name: this.attr(''),

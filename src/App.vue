@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AdvancedRelationshipQueries />
+    <SingleTableInheritance />
     <!-- <div style="float: left">
       <h1>{{ user.name }}</h1>
 
@@ -27,19 +27,14 @@
 </template>
 
 <script>
-import User from './classes/User'
-import ListComponent from './components/List'
-import List from './classes/List'
-import ManyToMany from './components/ManyToMany.vue'
-import AdvancedRelationshipQueries from './components/AdvancedRelationshipQueries.vue'
+import { User } from './classes/UserHierarchy'
+import SingleTableInheritance from './components/SingleTableInheritance.vue'
 
 export default {
   name: 'app',
 
   components: {
-    List: ListComponent,
-    ManyToMany,
-    AdvancedRelationshipQueries,
+    SingleTableInheritance,
   },
 
   data() {

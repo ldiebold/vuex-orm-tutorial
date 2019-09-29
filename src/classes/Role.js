@@ -1,5 +1,5 @@
 import { Model } from '@vuex-orm/core'
-import User from './User'
+import { User } from './UserHierarchy'
 import RoleUser from './RoleUser'
 
 export default class Role extends Model {

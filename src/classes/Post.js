@@ -3,7 +3,7 @@ import Image from './Image'
 import Comment from './Comment'
 import Tag from './Tag'
 import Taggable from './Taggable'
-import User from './User'
+import { User } from './UserHierarchy'
 
 export default class Post extends Model {
   static entity = 'posts'

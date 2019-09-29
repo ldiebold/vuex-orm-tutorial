@@ -1,5 +1,5 @@
 import { Model } from '@vuex-orm/core'
-import User from './User'
+import { User } from './UserHierarchy'
 import Item from './Item'
 
 export default class List extends Model {

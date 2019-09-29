@@ -1,5 +1,6 @@
 import { Model } from '@vuex-orm/core'
-import User from './User'
+import { User } from './UserHierarchy'
+
 
 export default class Comment extends Model {
   static entity = 'comments'
